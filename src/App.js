@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
+import NavBar from './components/NavBar';
+import LoginForm from './components/LoginForm';
+import Timer from './components/Timer';
+import Clicker from './components/Clicker';
+import InstructorDashboard from './components/InstructorDashboard'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ListMap from './components/ListMap';
+import { LoginContext } from './contexts/LoginContext';
+import { useState } from 'react';
+
 
 function App() {
+  const list = [1, 2, 3, 4, 5]
+  const [clickCount, setClickCount] = useState(0)
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LoginContext.Provider value={{ clickCount, setClickCount }}>
+        <Router>
+          <NavBar value1="About" value2="Contact us" />
+          <Routes>
+
+            <Route path="/timer" element={<Timer />} />
+            <Route exact path="/clicker" element={<Clicker />} />
+            <Route path="/list" element={<ListMap list={list} />} />
+            <Route path="/InstructorDashboard" element={<InstructorDashboard />} />
+            <Route path="/" element={<LoginForm />} />
+          </Routes>
+        </Router>
+      </LoginContext.Provider>
     </div>
+
   );
 }
 
