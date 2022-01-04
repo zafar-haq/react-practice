@@ -8,18 +8,9 @@ function InstructorDashboard() {
     const classes = useSelector(state => state.allClasses)
     const dispatch = useDispatch()
 
-    // const getClasses = async function(){
-    //     const response = await axios.get('http://127.0.0.1:8000/instructor/getClass').catch(e => {
-    //         console.log(e)
-    //     })
-    //     dispatch(setClass(response.data.data))
-    // }
-    // useEffect(() => {
-    //     getClasses()
-    // }, [])
 
     useEffect(() => {
-        dispatch(setClass())
+        dispatch({type:'GET_CLASS_REQUEST'})
     }, [])
 
 

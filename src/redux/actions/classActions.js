@@ -1,21 +1,14 @@
 import { actionTypes } from "../actionTypes"
-import axios from "axios"
-import axiosService from '../../services/axiosService'
-// export const setClass = (value) => {
-//     return {
-//         type: actionTypes.SET_CLASS,
-//         payload: value
 
-//     }
-// }
 
-export const setClass = () => async (dispatch) => {
-    const response = await axiosService.send('instructor/getClass', '', '', 'get');
-    dispatch({
+export const setClass = (value) => {
+    return {
         type: actionTypes.SET_CLASS,
-        payload: response.data.data
-    })
+        payload: value
+
+    }
 }
+
 
 export const removeClass = value => {
     return {
